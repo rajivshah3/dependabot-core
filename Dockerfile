@@ -11,7 +11,6 @@ ENV DEBIAN_FRONTEND="noninteractive" \
 # at install time).
 
 RUN apt-get update \
-    && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
       build-essential \
       dirmngr \
