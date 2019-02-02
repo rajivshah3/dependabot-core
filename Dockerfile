@@ -53,7 +53,7 @@ ENV BUNDLE_SILENCE_ROOT_WARNING=1
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C3173AA6 \
     && echo "deb http://ppa.launchpad.net/brightbox/ruby-ng/ubuntu bionic main" > /etc/apt/sources.list.d/brightbox.list \
     && apt-get update \
-    && apt-get install -y ruby2.5 ruby2.5-dev \
+    && apt-get install -y --no-install-recommends ruby2.5 ruby2.5-dev \
     && rm -rf /var/lib/apt/lists/* \
     && gem update --system 3.0.2 \
     && gem install bundler -v 1.17.3 --no-document
@@ -75,10 +75,10 @@ RUN git clone https://github.com/pyenv/pyenv.git /usr/local/.pyenv \
 
 # Install Node 10.0 and Yarn
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-    && apt-get install -y nodejs \
+    && apt-get install -y --no-install-recommends nodejs \
     && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-    && apt-get update && apt-get install -y yarn \
+    && apt-get update && apt-get install -y --no-install-recommends yarn \
     && rm -rf /var/lib/apt/lists/*
 
 
@@ -101,7 +101,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" >> /etc/ap
     && echo "deb-src http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" >> /etc/apt/sources.list.d/ondrej-php.list \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C \
     && apt-get update \
-    && apt-get install -y php7.2 php7.2-xml php7.2-json php7.2-zip php7.2-mbstring php7.2-intl php7.2-common php7.2-gettext php7.2-curl php-xdebug php7.2-bcmath php-gmp php7.2-imagick php7.2-gd php7.2-redis php7.2-soap php7.2-ldap php7.2-memcached php7.2-sqlite3 php7.2-apcu \
+    && apt-get install -y --no-install-recommends php7.2 php7.2-xml php7.2-json php7.2-zip php7.2-mbstring php7.2-intl php7.2-common php7.2-gettext php7.2-curl php-xdebug php7.2-bcmath php-gmp php7.2-imagick php7.2-gd php7.2-redis php7.2-soap php7.2-ldap php7.2-memcached php7.2-sqlite3 php7.2-apcu \
     && rm -rf /var/lib/apt/lists/* \
     && curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
@@ -124,7 +124,7 @@ ENV PATH="$PATH:/usr/local/elixir/bin"
 RUN wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb \
     && dpkg -i erlang-solutions_1.0_all.deb \
     && apt-get update \
-    && apt-get install -y esl-erlang \
+    && apt-get install -y --no-install-recommends esl-erlang \
     && rm -rf /var/lib/apt/lists/* \
     && wget https://github.com/elixir-lang/elixir/releases/download/v1.8.0/Precompiled.zip \
     && unzip -d /usr/local/elixir -x Precompiled.zip \
